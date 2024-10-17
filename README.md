@@ -22,6 +22,8 @@ Will be removed if changes are done on the official version.
 See original repo for features. Only new ones are detailed here.
 
 - Launch multiple instances of ghore at once using `ghore preview file.md &`
+- Each instance is launched on a random port between TCP/5169 and TCP/5200
+- A Check is done to avoid port overlapping between instances
 - Each instance is tracked inside a temporary file in the following format :
 
 | PATH              | FILE       | URL                   |
