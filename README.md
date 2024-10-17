@@ -1,93 +1,41 @@
-Hey, I am currently open to new work opportunities, you can find my resume [here](https://github.com/p-balu/resume/blob/main/resume_balachander-4.pdf?raw=true)
+Unofficial fork of https://github.com/p-balu/ghore
+
+All credits go to the original author : https://github.com/p-balu
+
+See Original repo for more informations.
 
 # Ghore (GitHub offline renderer)
 
-![alt text](https://github.com/p-balu/assets/blob/main/Screenshot1.png?raw=true)
+This fork has been done to add a multiples instance functionnality.
+Will be removed if changes are done on the official version.
 
-## Content
-
-- [What is this?](#what-is-this)
-- [Features](#features)
-- [Examples](#examples)
+- [New Features](#new-features)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Installing `package using npm` globally](#installing-package-using-npm-globally)
+- [Installing package globally](#installing-package-globally)
 - [Configuration](#configuration)
 - [Contributing](#contributing)
 - [License](#license)
 
-# What is this?
+## New Features
 
-Ghore is an open-source, offline command-line interface (CLI) tool specifically designed for developers and writers working with GitHub. Its primary function is to render Markdown files into HTML, closely emulating the GitHub Markdown style. This enables users to preview how their Markdown documents will look on GitHub before committing them to a repository.
+See original repo for features. Only new ones are detailed here.
 
-## Features
+- Launch multiple instances of ghore at once using `ghore preview file.md &`
+- Each instance is tracked inside a temporary file in the following format :
 
-- **Offline Conversion:** Convert Markdown files to HTML offline without the need for an internet connection.
-- **Watch for Changes:** Automatically update the HTML output when changes are made to the input Markdown file.
-- **GitHub Styling:** HTML output mirrors the GitHub Markdown style for consistency.
-- **Code Block Highlighting:** Integrated [Starry Night](https://github.com/your-username/starry-night) ensures beautiful and syntax-highlighted code blocks.
-- **Flowchart Support:** It also supports live preview of mermaid code blocks (Github's API doesn't process mermaid codeblocks).
+| PATH              | FILE       | URL                   |
+|-------------------|------------|-----------------------|
+| /home/user        | README.md  | http://localhost:5178 |
+| /home/user        | INSTALL.md | http://localhost:5200 |
+| /home/user/ghore/ | README.md  | http://localhost:5174 |
 
-## `Examples`
+- File is auto-created in a temp directory using equivalent to `mktemp -d` and is updated on the fly
+      - When a file is not processed anymore by ghore, matching line is removed in temporary file
+- If file exists or directory `ghore-` exist in temp directory (/tmp or whatever /var/tmp/s3/xxxx on macOS for example), use existing file
 
-Highlights the below code block function using integrated [Starry Night](https://github.com/your-username/starry-night)
-
-````code
-    ```sh
-    // Highlight code blocks function
-const highlightCode = async (lang, str) => {
-  if (!starryNight || !toHtml) {
-    await initializeStarryNight();
-  }
-    ```
-````
-
-#### like this
-
-```sh
-const highlightCode = async (lang, str) => {
-  if (!starryNight || !toHtml) {
-    await initializeStarryNight();
-  }
-```
-
-Below mermaid block will be displayed
-
-````code
-```mermaid
-gitGraph:
-    commit "test"
-    branch newbranch
-    checkout newbranch
-    commit id:"1111"
-    commit tag:"test"
-    checkout main
-    commit type: HIGHLIGHT
-    commit
-    merge newbranch
-    commit
-    branch b2
-    commit
-```
-````
-
-#### like this
-
-```mermaid
-gitGraph:
-    commit "changes"
-    branch newbranch
-    checkout newbranch
-    commit id:"1111"
-    commit tag:"test"
-    checkout main
-    commit type: HIGHLIGHT
-    commit
-    merge newbranch
-    commit
-    branch b2
-    commit
-```
+**Example:**
+![Screenshot]([https://github.com/Th3CL0wnS3c/ghore/blob/assets/screenshot.png 
 
 ## `Requirements`
 
@@ -97,7 +45,7 @@ Requires the latest version of nodejs 20.10.0 or above.
 
 ```bash
 # Clone the repository
-git clone https://github.com/p-balu/ghore.git
+git clone https://github.com/Th3CL0wnS3c/ghore.git
 
 # Navigate to the project directory
 cd ghore
@@ -109,13 +57,15 @@ npm install
 npm start `your/filepath/README.md`
 ```
 
-## Installing `package using npm` globally
+## Installing package globally
 
 Install the package globally
 
 ```sh
-npm i ghore -g
+npm link
 ```
+
+`npm link` is used instead of `npm install` because modified code is not registred in npmregistry to avoid conflicts with original author code.
 
 ### Start the application in 2 different ways
 
@@ -131,13 +81,18 @@ ghore preview
 ghore preview /path/toyour/README.md
 ```
 
+#### or for multiples instances
+```sh
+ghore preview <file.md> &
+```
+
 ## Configuration
 
 You can customize the appearance of the HTML output by modifying the included CSS file (`styles.css`).
 
 ## Contributing
 
-Contributions are welcome! Feel free to open issues, submit pull requests, or provide feedback.
+If you think of contributing, do it directly on the original version ;)
 
 ## License
 
