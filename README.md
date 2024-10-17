@@ -35,7 +35,7 @@ See original repo for features. Only new ones are detailed here.
 - If file exists or directory `ghore-` exist in temp directory (/tmp or whatever /var/tmp/s3/xxxx on macOS for example), use existing file
 
 **Example:**
-![Screenshot]([https://github.com/Th3CL0wnS3c/ghore/blob/assets/screenshot.png 
+![Screenshot](https://github.com/Th3CL0wnS3c/ghore/blob/master/screenshot.png)
 
 ## `Requirements`
 
